@@ -35,7 +35,7 @@ switch ($url) {
         break;
     case 'mon-hoc/quizs/luu-tao-moi':
         break;
-    case 'mon-hoc/quizs/llam-quiz':
+    case 'mon-hoc/quizs/lam-quiz':
         break;
     
     default:
