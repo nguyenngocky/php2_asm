@@ -15,7 +15,7 @@ switch ($url) {
     case 'mon-hoc/tao-moi':
         // Thực hiện nhận dữ liệu từ màn hình tạo mới
         // lưu dữ liệu vào db 
-        // sau đó điều hướng về trang chủ
+        // sau đó điều hướng về trang chủ 
         break;
     case 'mon-hoc/luu-tao-moi':
         break;
