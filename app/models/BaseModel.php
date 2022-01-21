@@ -6,7 +6,7 @@ class BaseModel
 	
 	protected function getConnect()
 	{
-        $conn = new PDO('mysql:host=127.0.0.1;dbname=php2_asm1;charset=utf8', 'root', '1');
+        $conn = new PDO('mysql:host=127.0.0.1;dbname=php2_asm1;charset=utf8', 'root', '');
         return $conn;
     }
     
