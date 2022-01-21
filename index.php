@@ -1,5 +1,9 @@
 <?php
 require_once './vendor/autoload.php';
+
+
+use App\Controllers\SubjectController;
+
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch ($url) {
     case 'login':
@@ -10,6 +14,8 @@ switch ($url) {
         // hiển thị thông tin chi tiết của sản phẩm
         break;
     case 'mon-hoc':
+        $ctr = new SubjectController();
+        $ctr->index();
         // hiển thị giao diện form tạo mới sản phẩm
         break;
     case 'mon-hoc/tao-moi':
