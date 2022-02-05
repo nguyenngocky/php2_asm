@@ -1,21 +1,50 @@
 <?php
+session_start();
 require_once './commons/helpers.php';
 require_once './vendor/autoload.php';
 
-
+use App\Controllers\DashboardController;
+use App\Controllers\LoginController;
 use App\Controllers\SubjectController;
 
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch ($url) {
+    case '/':
+        $ctr = new LoginController();
+        $ctr->index();
+        break;
     case 'login':
-        // trang chủ - hiển thị danh sách sản phẩm theo danh mục
+        $ctr = new LoginController();
+        $ctr->index();
+        // trang đăng nhập
+        break;
+    case 'check-login':
+        $ctr = new LoginController();
+        $ctr->check();
+        // trang đăng nhập
+        break;
+    case 'log-out':
+        $ctr = new LoginController();
+        $ctr->log_out();
+        break;
+    case 'sign-up':
+        $ctr = new LoginController();
+        $ctr->sign_up();
+        // trang đăng ký
+        break;
+    case 'sign-up/luu':
+        $ctr = new LoginController();
+        $ctr->luu_sign_up();
         break;
     case 'dashboard':
+        $ctr = new DashboardController();
+        $ctr->index();
         // trang chi tiết sản phẩm sẽ có tham số đường dẫn ?id=xxx
         // hiển thị thông tin chi tiết của sản phẩm
         break;
     case 'mon-hoc':
         $ctr = new SubjectController();
+        $ctr->index();
         $ctr->index();
         // hiển thị giao diện form tạo mới sản phẩm
         break;
@@ -52,7 +81,7 @@ switch ($url) {
         break;
     
     default:
-        # code...
+        echo "Sai đường dẫn vui lòng truy cập lại!";
         break;
 }
 ?>
