@@ -5,6 +5,7 @@ require_once './vendor/autoload.php';
 
 use App\Controllers\DashboardController;
 use App\Controllers\LoginController;
+use App\Controllers\StudentQuizController;
 use App\Controllers\SubjectController;
 
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
@@ -70,6 +71,8 @@ switch ($url) {
     case 'mon-hoc/luu-cap-nhat':
         break;
     case 'mon-hoc/quizs':
+        $ctr = new StudentQuizController();
+        $ctr->index();
         break;
     case 'mon-hoc/chi-tiet-quizs':
         break;
