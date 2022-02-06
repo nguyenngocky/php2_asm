@@ -1,7 +1,8 @@
 <?php
 namespace App\Controllers;
-
 use App\Models\user;
+
+if(isset($_SESSION['auth'])){header('location: '. BASE_URL .'dashboard');}
 
 class LoginController{
     public function index(){
@@ -18,7 +19,7 @@ class LoginController{
             if($user && password_verify($data['password'], $user->password)){ // kiểm tra mật khẩu lấy từ input giống với mật khẩu trong bảng không
                 if($user->role_id == 2){ // kiểm tra nếu role_id = 2 là giáo viên sẽ chuyển qua trang quản trị
                     header('Location: '. BASE_URL . 'dashboard');
-                    unset($user->password); // xóa mật khẩu để bảo mật . Đoạn này học thầy Thiện từ php1.
+                    unset($user->password); // xóa mật khẩu để bảo mật 
                     $_SESSION['auth'] = $user;
                     $_SESSION['id'] = $user->id;
                     $_SESSION['name'] = $user->name;
@@ -66,5 +67,4 @@ class LoginController{
     }
 
 }
-
 ?>

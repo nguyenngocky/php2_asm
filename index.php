@@ -43,9 +43,12 @@ switch ($url) {
         // trang chi tiết sản phẩm sẽ có tham số đường dẫn ?id=xxx
         // hiển thị thông tin chi tiết của sản phẩm
         break;
+    case 'profile':
+        $ctr = new DashboardController();
+        $ctr->profile();
+        break;
     case 'mon-hoc':
         $ctr = new SubjectController();
-        $ctr->index();
         $ctr->index();
         // hiển thị giao diện form tạo mới sản phẩm
         break;
