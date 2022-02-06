@@ -6,6 +6,8 @@ use App\Models\Subject;
 class SubjectController{
     
     public function index(){
+        $title = "Danh sách môn học";
+        $h1 = "Danh sách môn học";
         $subjects = Subject::all();
 
         include_once "./app/views/mon-hoc/index.php";

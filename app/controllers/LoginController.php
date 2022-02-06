@@ -23,12 +23,14 @@ class LoginController{
                     $_SESSION['auth'] = $user;
                     $_SESSION['id'] = $user->id;
                     $_SESSION['name'] = $user->name;
+                    $_SESSION['email'] = $user->email;
                 }else if($user->role_id == 1){ // role_id = 1 là sinh viên chuyển qua trang làm bài
                     header('Location: '. BASE_URL . 'mon-hoc/quizs');
                     unset($user->password); // xóa mật khẩu để bảo mật . Đoạn này học thầy Thiện từ php1.
                     $_SESSION['auth_sv'] = $user;
                     $_SESSION['id_sv'] = $user->id;
                     $_SESSION['name_sv'] = $user->name;
+                    $_SESSION['email_sv'] = $user->email;
                 }
             }else{
                 $thongbao = '<script>alert("đăng nhập thất bại")</script>';

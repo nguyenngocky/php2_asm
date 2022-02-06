@@ -17,7 +17,7 @@
 
 	<link rel="canonical" href="index.html" />
 
-	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+	<title><?=$title?></title>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;display=swap" rel="stylesheet">
 
@@ -54,9 +54,9 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index-2.html">
+				<a class="sidebar-brand" href="<?= BASE_URL .'dashboard'?>">
 					<span class="sidebar-brand-text align-middle">
-						AdminKit
+						Quản trị
 						<sup><small class="badge bg-primary text-uppercase">Pro</small></sup>
 					</span>
 					<svg class="sidebar-brand-icon align-middle" width="32px" height="32px" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5"
@@ -101,16 +101,16 @@
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
 						</a>
 						<ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
-							<li class="sidebar-item active"><a class="sidebar-link" href="<?= BASE_URL . 'dashboard'?>">Thống kê </a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="<?= BASE_URL . 'dashboard'?>">Thống kê </a></li>
 						</ul>
 					</li>
 
 					<li class="sidebar-item">
 						<a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link collapsed">
-							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
+							<i class="align-middle" data-feather="layout"></i> <span class="align-middle">Danh sách</span>
 						</a>
 						<ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-settings.html">Settings</a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="<?= BASE_URL . 'mon-hoc'?>">Môn học</a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-projects.html">Projects <span
 										class="sidebar-badge badge bg-primary">Pro</span></a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-clients.html">Clients <span
@@ -180,49 +180,7 @@
 					</div>
 				</form>
 
-				<ul class="navbar-nav d-none d-lg-block">
-					<li class="nav-item px-2 dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">
-							Mega Menu
-						</a>
-						<div class="dropdown-menu dropdown-menu-start dropdown-mega" aria-labelledby="servicesDropdown">
-							<div class="d-md-flex align-items-start justify-content-start">
-								<div class="dropdown-mega-list">
-									<div class="dropdown-header">UI Elements</div>
-									<a class="dropdown-item" href="#">Alerts</a>
-									<a class="dropdown-item" href="#">Buttons</a>
-									<a class="dropdown-item" href="#">Cards</a>
-									<a class="dropdown-item" href="#">Carousel</a>
-									<a class="dropdown-item" href="#">General</a>
-									<a class="dropdown-item" href="#">Grid</a>
-									<a class="dropdown-item" href="#">Modals</a>
-									<a class="dropdown-item" href="#">Tabs</a>
-									<a class="dropdown-item" href="#">Typography</a>
-								</div>
-								<div class="dropdown-mega-list">
-									<div class="dropdown-header">Forms</div>
-									<a class="dropdown-item" href="#">Layouts</a>
-									<a class="dropdown-item" href="#">Basic Inputs</a>
-									<a class="dropdown-item" href="#">Input Groups</a>
-									<a class="dropdown-item" href="#">Advanced Inputs</a>
-									<a class="dropdown-item" href="#">Editors</a>
-									<a class="dropdown-item" href="#">Validation</a>
-									<a class="dropdown-item" href="#">Wizard</a>
-								</div>
-								<div class="dropdown-mega-list">
-									<div class="dropdown-header">Tables</div>
-									<a class="dropdown-item" href="#">Basic Tables</a>
-									<a class="dropdown-item" href="#">Responsive Table</a>
-									<a class="dropdown-item" href="#">Table with Buttons</a>
-									<a class="dropdown-item" href="#">Column Search</a>
-									<a class="dropdown-item" href="#">Muulti Selection</a>
-									<a class="dropdown-item" href="#">Ajax Sourced Data</a>
-								</div>
-							</div>
-						</div>
-					</li>
-				</ul>
+				
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">

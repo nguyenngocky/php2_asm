@@ -3,7 +3,7 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a href="index-2.html" class="text-muted"><strong>AdminKit Demo</strong></a> &copy;
+								<a href="https://www.facebook.com/Legendary.kyy/" class="text-muted"><strong>Nguyen Ngoc Ky</strong></a> &copy;
 							</p>
 						</div>
 						<div class="col-6 text-end">
