@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Subject;
+use App\Models\User;
 
 class SubjectController{
     
@@ -9,6 +10,7 @@ class SubjectController{
         $title = "Danh sách môn học";
         $h1 = "Danh sách môn học";
         $subjects = Subject::all();
+        $user = User::all();
 
         include_once "./app/views/mon-hoc/index.php";
     }
@@ -18,13 +20,16 @@ class SubjectController{
     }
 
     public function saveAdd(){
-        $model = new Subject();
-        $data = [
-            'name' => $_POST['name']
-        ];
-        $model->insert($data);
-        header('location: ' . BASE_URL . 'mon-hoc');
-        die;
+        if(isset($_POST['add'])){
+            $model = new Subject();
+            $data = [
+                'name' => $_POST['name'],
+                'author_id' => $_POST['author_id'],
+            ];
+            $model->insert($data);
+            header('location: ' . BASE_URL . 'mon-hoc');
+            die;
+        }
     }
 
     public function remove(){

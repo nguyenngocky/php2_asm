@@ -15,9 +15,42 @@
                                 <thead>
                                     <tr>
                                         <th>Mã môn</th>
-                                        <th>tên môn</th>
+                                        <th>Tên môn</th>
+                                        <th>Người tạo</th>
                                         <th>
-                                            <a href="<?= BASE_URL . 'mon-hoc/tao-moi'?>">Tạo mới</a>
+                                            
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
+                                                Tạo mới
+                                            </button>
+                                            <!-- Create -->
+                                            <div class="modal fade" id="defaultModalPrimary" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <form action="<?= BASE_URL . 'mon-hoc/luu-tao-moi'?>" method="POST">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Thêm môn học</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body m-3">
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        <h5 class="card-title mb-0">Tên môn học</h5>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <input type="text" name="name" class="form-control" placeholder="Nhập vào tên môn học">
+                                                                        <input type="hidden" name="author_id" value="<?=$_SESSION['id']?>">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" name="add" class="btn btn-primary">Thêm</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- end create -->
                                         </th>
                                     </tr>
                                 </thead>
@@ -26,6 +59,15 @@
                                     <tr>
                                         <td><?= $sub->id ?></td>
                                         <td><?= $sub->name ?></td>
+                                        <td>
+                                            <?php foreach ($user as $c) : ?>
+                                                <?php
+                                                if ($c->id == $sub->author_id) {
+                                                    echo $c->name;
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                        </td>
                                         <td>
                                             <a href="<?= BASE_URL . 'mon-hoc/cap-nhat?id=' . $sub->id ?>">Sửa</a>
                                             <a href="<?= BASE_URL . 'mon-hoc/xoa?id=' . $sub->id ?>">Xóa</a>
