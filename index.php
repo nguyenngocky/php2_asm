@@ -52,16 +52,17 @@ switch ($url) {
         $ctr->index();
         // hiển thị giao diện form tạo mới sản phẩm
         break;
-    case 'mon-hoc/tao-moi':
-        $ctr = new SubjectController();
-        $ctr->addForm();
-        // Thực hiện nhận dữ liệu từ màn hình tạo mới
-        // lưu dữ liệu vào db 
-        // sau đó điều hướng về trang chủ
-        break;
     case 'mon-hoc/luu-tao-moi':
         $ctr = new SubjectController();
         $ctr->saveAdd();
+        break;
+    case 'mon-hoc-cap-nhat':
+        $ctr = new SubjectController();
+        $ctr->cap_nhat();
+        break;
+    case 'mon-hoc/luu-cap-nhat':
+        $ctr = new SubjectController();
+        $ctr->luu_cap_nhat();
         break;
     case 'mon-hoc/xoa':
         $ctr = new SubjectController();

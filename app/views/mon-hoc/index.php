@@ -16,7 +16,7 @@
                                     <tr>
                                         <th>Mã môn</th>
                                         <th>Tên môn</th>
-                                        <th>Người tạo</th>
+                                        <th>Người tạo gần đây</th>
                                         <th>
                                             
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
@@ -29,7 +29,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title">Thêm môn học</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body m-3">
                                                                 <div class="card">
@@ -69,7 +69,7 @@
                                             <?php endforeach; ?>
                                         </td>
                                         <td>
-                                            <a href="<?= BASE_URL . 'mon-hoc/cap-nhat?id=' . $sub->id ?>">Sửa</a>
+                                            <a href="<?= BASE_URL . 'mon-hoc-cap-nhat?id=' . $sub->id ?>">Sửa</a>
                                             <a href="<?= BASE_URL . 'mon-hoc/xoa?id=' . $sub->id ?>">Xóa</a>
                                         </td>
                                     </tr>
