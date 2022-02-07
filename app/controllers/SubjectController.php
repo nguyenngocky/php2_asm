@@ -16,6 +16,19 @@ if(isset($_SESSION['auth'])){
             include_once "./app/views/mon-hoc/index.php";
         }
 
+        public function saveAdd(){
+            if(isset($_POST['add'])){
+                $model = new Subject();
+                $data = [
+                    'name' => $_POST['name'],
+                    'author_id' => $_POST['author_id'],
+                ];
+                $model->insert($data);
+                header('location: ' . BASE_URL . 'mon-hoc');
+                die;
+            }
+        }
+
 
         public function cap_nhat(){
             $id = $_GET['id'];
@@ -43,19 +56,6 @@ if(isset($_SESSION['auth'])){
             $model->update($data);
             header('location: ' . BASE_URL . 'mon-hoc');
             die;
-        }
-
-        public function saveAdd(){
-            if(isset($_POST['add'])){
-                $model = new Subject();
-                $data = [
-                    'name' => $_POST['name'],
-                    'author_id' => $_POST['author_id'],
-                ];
-                $model->insert($data);
-                header('location: ' . BASE_URL . 'mon-hoc');
-                die;
-            }
         }
 
         public function remove(){

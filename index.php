@@ -5,6 +5,7 @@ require_once './vendor/autoload.php';
 
 use App\Controllers\DashboardController;
 use App\Controllers\LoginController;
+use App\Controllers\QuizController;
 use App\Controllers\StudentQuizController;
 use App\Controllers\SubjectController;
 
@@ -70,20 +71,35 @@ switch ($url) {
         break;
     case 'mon-hoc/chi-tiet':
         break;
-    case 'mon-hoc/cap-nhat':
-        break;
-    case 'mon-hoc/luu-cap-nhat':
-        break;
-    case 'mon-hoc/quizs':
+    case 'quiz':
         $ctr = new StudentQuizController();
         $ctr->index();
         break;
-    case 'mon-hoc/chi-tiet-quizs':
+    case 'danh-sach-quiz':
+        $ctr = new QuizController();
+        $ctr->DanhSachQuiz();
         break;
-    case 'mon-hoc/quizs/tao-moi':
+    case 'quiz-tao-moi':
+        $ctr = new QuizController();
+        $ctr->addQuiz();
         break;
-    case 'mon-hoc/quizs/luu-tao-moi':
+    case 'quiz/luu-tao-moi':
+        $ctr = new QuizController();
+        $ctr->quiz_luu_add();
         break;
+    case 'quiz/xoa':
+        $ctr = new QuizController();
+        $ctr->xoa_quiz();
+        break;
+    case 'quiz-update':
+        $ctr = new QuizController();
+        $ctr->update_quiz();
+        break;
+    case 'quiz/luu-update':
+        $ctr = new QuizController();
+        $ctr->update_quiz_luu();
+        break;
+
     case 'mon-hoc/quizs/lam-quiz':
         break;
     

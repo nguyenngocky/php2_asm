@@ -15,7 +15,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com/">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<link rel="canonical" href="index.html" />
+	<link rel="canonical" href="index.php" />
 
 	<title><?=$title?></title>
 
@@ -96,11 +96,11 @@
 					<li class="sidebar-header">
 						Pages
 					</li>
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a data-bs-target="#dashboards" data-bs-toggle="collapse" class="sidebar-link">
 							<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboards</span>
 						</a>
-						<ul id="dashboards" class="sidebar-dropdown list-unstyled collapse show" data-bs-parent="#sidebar">
+						<ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a class="sidebar-link" href="<?= BASE_URL . 'dashboard'?>">Thống kê </a></li>
 						</ul>
 					</li>
@@ -111,8 +111,7 @@
 						</a>
 						<ul id="pages" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
 							<li class="sidebar-item"><a class="sidebar-link" href="<?= BASE_URL . 'mon-hoc'?>">Môn học</a></li>
-							<li class="sidebar-item"><a class="sidebar-link" href="pages-projects.html">Projects <span
-										class="sidebar-badge badge bg-primary">Pro</span></a></li>
+							<li class="sidebar-item"><a class="sidebar-link" href="<?= BASE_URL . 'danh-sach-quiz'?>">Quizs </a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-clients.html">Clients <span
 										class="sidebar-badge badge bg-primary">Pro</span></a></li>
 							<li class="sidebar-item"><a class="sidebar-link" href="pages-pricing.html">Pricing <span
@@ -126,26 +125,6 @@
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="<?= BASE_URL .'profile'?>">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-invoice.html">
-							<i class="align-middle" data-feather="credit-card"></i> <span class="align-middle">Invoice</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-tasks.html">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Tasks</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="calendar.html">
-							<i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Calendar</span>
-							<span class="sidebar-badge badge bg-primary">Pro</span>
 						</a>
 					</li>
 
