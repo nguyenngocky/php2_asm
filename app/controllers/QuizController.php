@@ -35,7 +35,7 @@ if(isset($_SESSION['auth'])){
                     'is_shuffle' => $_POST['is_shuffle'],
                 ];
                 $model->insert($data);
-                header('location: ' . BASE_URL . 'danh-sach-quiz');
+                header('location: ' .$_SERVER['HTTP_REFERER'] );
                 die;
             }
         }
@@ -43,7 +43,7 @@ if(isset($_SESSION['auth'])){
         public function xoa_quiz(){
             $id = $_GET['id'];
             Quiz::destroy($id);
-            header('location: ' . BASE_URL . 'danh-sach-quiz');
+            header('location: ' .$_SERVER['HTTP_REFERER']);
             die;
         }
         
@@ -81,6 +81,16 @@ if(isset($_SESSION['auth'])){
             $model->update($data);
             header('location: ' . BASE_URL . 'danh-sach-quiz');
             die;
+        }
+
+        public function chi_tiet_quiz(){
+            $title = "Danh sách quiz";
+            $h1 = "Danh sách quiz";
+            $subjects = Subject::all();
+            $id = $_GET['id'];
+            $quizDetail = Quiz::where(['subject_id', '=' , $id]) ->get();
+
+            include_once "./app/views/mon-hoc/chi-tiet-quiz.php";
         }
 
     }

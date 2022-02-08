@@ -69,7 +69,9 @@ switch ($url) {
         $ctr = new SubjectController();
         $ctr->remove();
         break;
-    case 'mon-hoc/chi-tiet':
+    case 'mon-hoc-chi-tiet':
+        $ctr = new QuizController();
+        $ctr->chi_tiet_quiz();
         break;
     case 'quiz':
         $ctr = new StudentQuizController();

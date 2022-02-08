@@ -54,7 +54,7 @@
                         </div>
                         
                         <button name="add" type="submit" class="btn btn-primary">Submit</button>
-                        <a class="btn btn-primary" href="<?= BASE_URL . 'danh-sach-quiz'?>">Quay lại</a>
+                        <a class="btn btn-primary" href="javascript:history.back()">Quay lại</a>
                     </form>
                 </div>
             </div>
