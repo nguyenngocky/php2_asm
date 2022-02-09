@@ -63,6 +63,8 @@ if(isset($_SESSION['auth'])){
 
         public function update_quiz_luu(){
             $id = $_GET['id'];
+            $idsub = $_POST['subject_id'];
+
             $model = Quiz::where(['id', '=', $id])->first();
             if(!$model){
                 header('location: ' . BASE_URL . 'danh-sach-quiz');
@@ -79,7 +81,7 @@ if(isset($_SESSION['auth'])){
                 'is_shuffle' => $_POST['is_shuffle'],
             ];
             $model->update($data);
-            header('location: ' . BASE_URL . 'danh-sach-quiz');
+            header('location: ' . BASE_URL . 'mon-hoc-chi-tiet?id='.$idsub);
             die;
         }
 
@@ -90,7 +92,7 @@ if(isset($_SESSION['auth'])){
             $id = $_GET['id'];
             $quizDetail = Quiz::where(['subject_id', '=' , $id]) ->get();
 
-            include_once "./app/views/mon-hoc/chi-tiet-quiz.php";
+            include_once "./app/views/quiz/chi-tiet-quiz.php";
         }
 
     }

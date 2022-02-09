@@ -5,7 +5,8 @@
         <div class="container-fluid p-0">
 
             <div class="mb-3">
-                <h1 class="h3 d-inline align-middle"><?=$h1 ?></h1>
+                
+                <h1 class="h3 d-inline align-middle"><?=$h1 ?> <?php foreach($subjects as $sub): ?> <?php if($_GET['id'] == $sub->id) echo $sub->name ?> <?php endforeach ?></h1>
                 <a class="btn btn-primary" href="<?= BASE_URL . 'mon-hoc'?>">Quay lại</a>
             </div>
 
@@ -37,50 +38,52 @@
                                                                 <h5 class="modal-title">Thêm quizs</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Tên Quiz</label>
-                                                                <input type="text" name="name" class="form-control" placeholder="Nhập vào tên quizs">
-                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Tên Quiz</label>
+                                                                    <input type="text" name="name" class="form-control" placeholder="Nhập vào tên quizs">
+                                                                </div>
 
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Môn học</label>
-                                                                <select name="subject_id" class="form-select flex-grow-1">
-                                                                    <?php foreach($subjects as $sub): ?>
-                                                                        <option hidden <?php if($_GET['id'] == $sub->id): ?> selected <?php endif ?> 
-                                                                        value="<?=$sub->id?>"><?=$sub->name?> </option>
-                                                                        <option value="<?=$sub->id?>"><?=$sub->name?> </option>
-                                                                    <?php endforeach ?>
-                                                                </select>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Thời gian làm bài </label>
-                                                                <input type="number" name="duration_minutes" class="form-control" placeholder="Nhập vào thời gian làm bài">
-                                                            </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Môn học</label>
+                                                                    <select name="subject_id" class="form-select flex-grow-1">
+                                                                        <?php foreach($subjects as $sub): ?>
+                                                                            <option hidden <?php if($_GET['id'] == $sub->id): ?> selected <?php endif ?> 
+                                                                            value="<?=$sub->id?>"><?=$sub->name?> </option>
+                                                                            <option value="<?=$sub->id?>"><?=$sub->name?> </option>
+                                                                        <?php endforeach ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Thời gian làm bài </label>
+                                                                    <input type="number" name="duration_minutes" class="form-control" placeholder="Nhập vào thời gian làm bài">
+                                                                </div>
 
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Thời gian bắt đầu</label>
-                                                                <input name="start_time" type="datetime-local" class="form-control" placeholder="Select date..">
-                                                            </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Thời gian bắt đầu</label>
+                                                                    <input name="start_time" type="datetime-local" class="form-control" placeholder="Select date..">
+                                                                </div>
 
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Thời gian kết thúc</label>
-                                                                <input name="end_time" type="datetime-local" class="form-control" placeholder="Select date..">
-                                                            </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Thời gian kết thúc</label>
+                                                                    <input name="end_time" type="datetime-local" class="form-control" placeholder="Select date..">
+                                                                </div>
 
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Trạng thái</label>
-                                                                <select name="status" class="form-select flex-grow-1">
-                                                                        <option value="0"> Có </option>
-                                                                        <option value="1"> Không </option>
-                                                                </select>
-                                                            </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Trạng thái</label>
+                                                                    <select name="status" class="form-select flex-grow-1">
+                                                                            <option value="0"> Hoạt động </option>
+                                                                            <option value="1"> Không hoạt động </option>
+                                                                    </select>
+                                                                </div>
 
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Đảo trộn</label>
-                                                                <select name="is_shuffle" class="form-select flex-grow-1">
-                                                                        <option value="0"> Có </option>
-                                                                        <option value="1"> Không </option>
-                                                                </select>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Đảo trộn</label>
+                                                                    <select name="is_shuffle" class="form-select flex-grow-1">
+                                                                            <option value="0"> Có </option>
+                                                                            <option value="1"> Không </option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
 
                                                             <div class="modal-footer">
@@ -113,9 +116,9 @@
                                         <td><?= $quiz->start_time ?></td>
                                         <td><?= $quiz->end_time ?></td>
                                         <?php if($quiz->status == 0){
-                                            $quizs = "Có";
+                                            $quizs = "Hoạt động";
                                         }else{
-                                            $quizs = "Không";
+                                            $quizs = "Không hoạt động";
                                         }  ?>
                                         <td><?= $quizs ?></td>
 
@@ -129,6 +132,7 @@
                                         <td>
                                             <a href="<?= BASE_URL . 'quiz-update?id=' . $quiz->id ?>">Sửa</a>
                                             <a href="<?= BASE_URL . 'quiz/xoa?id=' . $quiz->id ?>">Xóa</a>
+                                            <a href="<?= BASE_URL . 'question?id=' . $quiz->id ?>">Thêm câu hỏi</a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

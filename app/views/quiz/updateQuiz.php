@@ -27,20 +27,20 @@
 
                         <div class="mb-3">
                             <label class="form-label">Thời gian bắt đầu</label>
-                            <input name="start_time" value="<?=$model->start_time?>" type="datetime-local" class="form-control" placeholder="Select date..">
+                            <input name="start_time" value="<?= date('Y-m-d\TH:i', strtotime($model->start_time)) ?>" type="datetime-local" class="form-control" placeholder="Select date..">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Thời gian kết thúc</label>
-                            <input name="end_time" value="<?=$model->end_time?>" type="datetime-local" class="form-control" placeholder="Select date..">
+                            <input name="end_time" value="<?= date('Y-m-d\TH:i', strtotime($model->end_time)) ?>" type="datetime-local" class="form-control" placeholder="Select date..">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Trạng thái</label>
                             <select name="status" class="form-select flex-grow-1">
-                            <option hidden selected value="<?=$model->status?>"> <?php if($model->status == 0) echo "Có"; else echo "Không";?> </option>
-                                <option value="0"> Có </option>
-                                <option value="1"> Không </option>
+                            <option hidden selected value="<?=$model->status?>"> <?php if($model->status == 0) echo "Hoạt động"; else echo "Không hoạt động";?> </option>
+                                <option value="0"> Hoạt động </option>
+                                <option value="1"> Không hoạt động </option>
                             </select>
                         </div>
 

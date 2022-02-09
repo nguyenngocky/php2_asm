@@ -8,6 +8,8 @@ use App\Controllers\LoginController;
 use App\Controllers\QuizController;
 use App\Controllers\StudentQuizController;
 use App\Controllers\SubjectController;
+use App\Controllers\QuestionController;
+
 
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch ($url) {
@@ -73,6 +75,8 @@ switch ($url) {
         $ctr = new QuizController();
         $ctr->chi_tiet_quiz();
         break;
+    // tạo quizs
+
     case 'quiz':
         $ctr = new StudentQuizController();
         $ctr->index();
@@ -100,6 +104,27 @@ switch ($url) {
     case 'quiz/luu-update':
         $ctr = new QuizController();
         $ctr->update_quiz_luu();
+        break;
+    // tạo câu hỏi
+
+    case 'question':
+        $ctr = new QuestionController();
+        $ctr->index();
+        break;
+    
+    case 'question/luu-tao':
+        $ctr = new QuestionController();
+        $ctr->save_question_new();
+        break;
+
+    case 'question/xoa':
+        $ctr = new QuestionController();
+        $ctr->xoa_question();
+        break;
+    
+    case 'question-update':
+        $ctr = new QuestionController();
+        $ctr->update_question();
         break;
 
     case 'mon-hoc/quizs/lam-quiz':
