@@ -127,6 +127,11 @@ switch ($url) {
         $ctr->update_question();
         break;
 
+    case 'question/luu-update':
+        $ctr = new QuestionController();
+        $ctr->update_question_luu();
+        break;
+
     case 'mon-hoc/quizs/lam-quiz':
         break;
     

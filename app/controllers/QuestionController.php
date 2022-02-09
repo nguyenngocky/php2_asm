@@ -58,6 +58,25 @@ if(isset($_SESSION['auth'])){
 
             include_once "./app/views/question/update.php";
         }
+
+        public function update_question_luu(){
+            $id = $_GET['id'];
+            $idquiz = $_POST['quiz_id'];
+
+            $model = Quiz::where(['id', '=', $id])->first();
+            if(!$model){
+                header('location: ' . BASE_URL . 'danh-sach-quiz');
+                die;
+            }
+    
+            $data = [
+                'name' => $_POST['name'],
+                'quiz_id' => $_POST['quiz_id'],
+            ];
+            $model->update($data);
+            header('location: ' . BASE_URL . 'mon-hoc-chi-tiet?id='.$idquiz);
+            die;
+        }
     }
 
 }else{

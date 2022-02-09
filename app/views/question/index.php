@@ -36,7 +36,7 @@
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
                                                                     <label class="form-label">Tiêu đề câu hỏi</label>
-                                                                    <input type="text" name="name" class="form-control" placeholder="Nhập vào tên quizs">
+                                                                    <input type="text" name="name" class="form-control" placeholder="Nhập vào tiêu đề câu hỏi">
                                                                 </div>
 
                                                                 <div class="mb-3">
