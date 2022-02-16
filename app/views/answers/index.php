@@ -5,7 +5,7 @@
 
             <div class="mb-3">
                 
-                <h1 class="h3 d-inline align-middle"><?=$h1 ?> <?php foreach($Quiz as $quiz): ?> <?php if($_GET['id'] == $quiz->id) echo $quiz->name ?> <?php endforeach ?></h1>
+                <h1 class="h3 d-inline align-middle"><?=$h1 ?> <?php foreach($question as $ques): ?> <?php if($_GET['id'] == $ques->id) echo $ques->name ?> <?php endforeach ?></h1>
                 <a class="btn btn-primary" href="javascript:history.back();">Quay lại</a>
             </div>
 
@@ -16,9 +16,10 @@
                             <table id="datatables-reponsive" class="table table-striped" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Mã Câu hỏi</th>
-                                        <th>Tiêu đề Câu hỏi</th>
-                                        <th>Quizs</th>
+                                        <th>Mã Câu trả lời</th>
+                                        <th>Câu hỏi</th>
+                                        <th>Câu trả lời</th>
+                                        <th>Đáp án đúng?</th>
                                         <th>Ảnh</th>
                                         <th>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">
@@ -27,27 +28,32 @@
                                             <!-- Create -->
                                             <div class="modal fade" id="defaultModalPrimary" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                    <form action="<?= BASE_URL . 'question/luu-tao'?>" method="POST" enctype="multipart/form-data">
+                                                    <form action="<?= BASE_URL . 'answers/luu-tao'?>" method="POST" enctype="multipart/form-data">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title">Thêm câu hỏi</h5>
+                                                                <h5 class="modal-title">Thêm câu trả lời</h5>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">Tiêu đề câu hỏi</label>
-                                                                    <input type="text" name="name" class="form-control" placeholder="Nhập vào tiêu đề câu hỏi">
+                                                                    <label class="form-label">Nhập đáp án</label>
+                                                                    <input type="text" name="content" class="form-control" placeholder="Nhập vào câu trả lời">
                                                                 </div>
 
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">Quizs</label>
-                                                                    <select name="quiz_id" class="form-select flex-grow-1">
-                                                                        <?php foreach($Quiz as $quiz): ?>
+                                                                    <label class="form-label">Đáp án đúng ?</label>
+                                                                    <input type="checkbox" value="1" name="is_correct"> Đúng 
+                                                                </div>
 
-                                                                            <option hidden <?php if($_GET['id'] == $quiz->id): ?> selected <?php endif ?> 
-                                                                            value="<?=$quiz->id?>"> <?=$quiz->name?> </option>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Question</label>
+                                                                    <select name="question_id" class="form-select flex-grow-1">
+                                                                        <?php foreach($question as $ques): ?>
 
-                                                                            <option value="<?=$quiz->id?>"><?=$quiz->name?> </option>
+                                                                            <option hidden <?php if($_GET['id'] == $ques->id): ?> selected <?php endif ?> 
+                                                                            value="<?=$ques->id?>"> <?=$ques->name?> </option>
+
+                                                                            <option value="<?=$ques->id?>"><?=$ques->name?> </option>
                                                                         <?php endforeach ?>
                                                                     </select>
                                                                 </div>
@@ -71,25 +77,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach($question as $ques): ?>
+                                <?php foreach($answers as $ans): ?>
                                     <tr>
-                                        <td><?= $ques->id ?></td>
-                                        <td><?= $ques->name ?></td>
+                                        <td><?= $ans->id ?></td>
                                         <td>
-                                            <?php foreach ($Quiz as $c) : ?>
+                                            <?php foreach ($question as $c) : ?>
                                                 <?php
-                                                if ($c->id == $ques->quiz_id) {
+                                                if ($c->id == $ans->question_id) {
                                                     echo $c->name;
                                                 }
                                                 ?>
                                             <?php endforeach; ?>
                                         </td>
-                                        <td><?= $ques->img ?></td>
+                                        <td><?= $ans->content ?></td>
+                                        <td><?php if($ans->is_correct == 1) echo "đúng"; else echo "sai"?></td>
+                                        <td><?= $ans->img ?></td>
 
                                         <td>
-                                            <a href="<?= BASE_URL . 'question-update?id=' . $ques->id ?>">Sửa</a>
-                                            <a href="<?= BASE_URL . 'question/xoa?id=' . $ques->id ?>">Xóa</a>
-                                            <a href="<?= BASE_URL . 'answers?id=' . $ques->id ?>">Thêm câu trả lời</a>
+                                            <a href="<?= BASE_URL . 'answers-update?id=' . $ans->id ?>">Sửa</a>
+                                            <a href="<?= BASE_URL . 'answers/xoa?id=' . $ans->id ?>">Xóa</a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>

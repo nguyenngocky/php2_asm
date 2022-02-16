@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\Question;
 use App\Models\Quiz;
 
-if(isset($_SESSION['auth'])){
     class QuestionController{
 
         public function index(){
@@ -63,9 +62,9 @@ if(isset($_SESSION['auth'])){
             $id = $_GET['id'];
             $idquiz = $_POST['quiz_id'];
 
-            $model = Quiz::where(['id', '=', $id])->first();
+            $model = Question::where(['id', '=', $id])->first();
             if(!$model){
-                header('location: ' . BASE_URL . 'danh-sach-quiz');
+                header('location: ' . BASE_URL . 'question');
                 die;
             }
     
@@ -74,13 +73,9 @@ if(isset($_SESSION['auth'])){
                 'quiz_id' => $_POST['quiz_id'],
             ];
             $model->update($data);
-            header('location: ' . BASE_URL . 'mon-hoc-chi-tiet?id='.$idquiz);
+            header('location: ' . BASE_URL . 'question?id='.$idquiz);
             die;
         }
     }
-
-}else{
-    header('location: '. BASE_URL .'login');
-}
 
 ?>

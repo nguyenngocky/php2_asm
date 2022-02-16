@@ -70,7 +70,7 @@
 									<div class="text-center">
 										<img src="img/avatars/avatar.jpg" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
 									</div>
-									<form action="<?=BASE_URL. 'check-login'?>" method="post">
+									<form action="" method="post">
 										<div class="mb-3">
 											<label class="form-label">Email</label>
 											<input class="form-control form-control-lg" type="email" name="email" placeholder="Nhập vào email" />
@@ -95,7 +95,7 @@
                                             </label>
 										</div>
 										<div class="text-center mt-3">
-											<button type="submit" name="login" class="btn btn-lg btn-primary">Đăng nhập</button>
+											<button type="submit"  class="btn btn-lg btn-primary">Đăng nhập</button>
 										</div>
 									</form>
 								</div>

@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers;
 
-if(isset($_SESSION['auth'])){
     class DashboardController{
         public function index(){
             $title = "Trang chủ";
@@ -14,9 +13,5 @@ if(isset($_SESSION['auth'])){
         }
 
     }
-
-}else{
-    header('location: '. BASE_URL .'login');
-}
 
 ?>

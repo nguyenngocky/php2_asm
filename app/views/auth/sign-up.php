@@ -69,7 +69,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<form action="<?= BASE_URL . 'sign-up/luu'?>" method="POST">
+									<form action="" method="POST">
 										<div class="mb-3">
 											<label class="form-label">Tên</label>
 											<input class="form-control form-control-lg" type="text" name="name" placeholder="Nhập vào tên của bạn" />

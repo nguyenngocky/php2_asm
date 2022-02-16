@@ -10,7 +10,6 @@ class LoginController{
         include_once "./app/views/auth/sign-in.php";
     }
     public function check(){
-        if(isset($_POST['login'])){
             $data = [
                 'email' => $_POST['email'],
                 'password' => $_POST['password'],
@@ -37,7 +36,6 @@ class LoginController{
                 echo $thongbao;
                 header('Location: '. BASE_URL . 'login');
             }
-        }
     }
 
     public function log_out(){
