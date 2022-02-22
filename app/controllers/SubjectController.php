@@ -4,16 +4,19 @@ namespace App\Controllers;
 use App\Models\Subject;
 use App\Models\User;
 
-if(isset($_SESSION['auth'])){
-    class SubjectController{
+class SubjectController{
         
         public function index(){
-            $title = "Danh sách môn học";
             $h1 = "Danh sách môn học";
             $subjects = Subject::all();
             $user = User::all();
 
-            include_once "./app/views/mon-hoc/index.php";
+            // include_once "./app/views/mon-hoc/index.php";
+            return view('admin.mon-hoc.index', [
+                'h1' => $h1,
+                'subjects' => $subjects,
+                'user' => $user,
+            ]);
         }
 
         public function saveAdd(){
@@ -30,43 +33,38 @@ if(isset($_SESSION['auth'])){
         }
 
 
-        public function cap_nhat(){
-            $id = $_GET['id'];
-            $title = "Sửa môn học";
-            $model = Subject::where(['id', '=', $id])->first();
+        public function cap_nhat($id){
+            $model = Subject::where('id', '=', $id)->first();
             if(!$model){
                 header('location: ' . BASE_URL . 'mon-hoc');
                 die;
             }
-            include_once "./app/views/mon-hoc/update.php";
+
+            return view('admin.mon-hoc.update', [
+                'model' => $model,
+            ]);
         }
 
-        public function luu_cap_nhat(){
-            $id = $_GET['id'];
-            $model = Subject::where(['id', '=', $id])->first();
+        public function luu_cap_nhat($id){
+            // $model = Subject::where('id', '=', $id)->first();
+            $model = Subject::find($id);
             if(!$model){
                 header('location: ' . BASE_URL . 'mon-hoc');
                 die;
             }
-    
-            $data = [
-                'name' => $_POST['name'],
-                'author_id' => $_POST['author_id'],
-            ];
-            $model->update($data);
+            $model->name = $_POST['name'];
+            $model->author_id = $_POST['author_id'];
+            $model->save();
+            
             header('location: ' . BASE_URL . 'mon-hoc');
             die;
         }
 
-        public function remove(){
-            $id = $_GET['id'];
+        public function remove($id){
             Subject::destroy($id);
             header('location: ' . BASE_URL . 'mon-hoc');
             die;
         }
     }
 
-}else{
-    header('location: '. BASE_URL .'login');
-}
 ?>

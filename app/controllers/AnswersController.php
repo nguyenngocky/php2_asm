@@ -3,33 +3,40 @@ namespace App\Controllers;
 
 use App\Models\Answer;
 use App\Models\Question;
+use App\Models\Quiz;
 
 class AnswersController {
-    public function index() {
-        $title = "Danh sách câu trả lời";
+    public function index($id) {
         $h1 = "Danh sách câu trả lời của ";
-        $answers = Answer::all();
-        $question = Question::all();
+        $answers = Answer::where('question_id', $id)->get();
+        $question = Question::find($id);
+        // echo "<pre>";
+        // var_dump($question);die;
         
-        include_once "./app/views/answers/index.php";
+        return view('admin.answer.index', [
+            'h1' => $h1,
+            'answers' => $answers,
+            'question' => $question,
+        ]);
     }
 
     public function save_answers_new(){
         if(isset($_POST['add'])){
             $model = new Answer();
-            // kiểm tra xem ảnh có được up lên không
+            // thêm ảnh
             $filename = "";
             $imgvalue = $_FILES['img'];
             if($imgvalue['size'] > 0){
                 $filename = uniqid(). '-' . $imgvalue['name'];
-                move_uploaded_file($imgvalue['tmp_name'], 'img/photos/' .$filename);
-                $filename = 'img/photos/' . $filename;
+                move_uploaded_file($imgvalue['tmp_name'], './public/img/photos/' .$filename);
+                $imgvalue = $filename;
             }
+
             $data = [
                 'content' => $_POST['content'],
                 'question_id' => $_POST['question_id'],
                 'is_correct' => $_POST['is_correct'],
-                'img' => $imgvalue,
+                'img' => $filename,
             ];
             $model->insert($data);
             header('location: ' .$_SERVER['HTTP_REFERER'] );
@@ -37,43 +44,43 @@ class AnswersController {
         }
     }
 
-    public function xoa_answers(){
-        $id = $_GET['id'];
+    public function xoa_answers($id){
         Answer::destroy($id);
         header('location: ' .$_SERVER['HTTP_REFERER']);
         die;
     }
 
-    public function update_answers(){
-        $id = $_GET['id'];
-        $title = "Sửa Answers";
+    public function update_answers($id){
+        
         $question = Question::all();
-        $model = Answer::where(['id', '=', $id])->first();
+        $model = Answer::where('id', '=', $id)->first();
         if(!$model){
             header('location: ' . BASE_URL . 'answers');
             die;
         }
 
-        include_once "./app/views/answers/update.php";
+        return view('admin.answer.update', [
+            'model' => $model,
+            'question' => $question,
+        ]);
     }
 
-    public function update_answers_luu(){
-        $id = $_GET['id'];
+    public function update_answers_luu($id){
         $idques = $_POST['question_id'];
+        $urlC = Question::where('id', '=', $idques)->first();
+        $urlBack = $urlC->quiz_id;
 
-        $model = Question::where(['id', '=', $id])->first();
+        $model = Answer::where('id', '=', $id)->first();
         if(!$model){
-            header('location: ' . BASE_URL . 'answers');
+            header('location: ' .$_SERVER['HTTP_REFERER'] );
             die;
         }
 
-        $data = [
-            'content' => $_POST['content'],
-            'question_id' => $_POST['question_id'],
-            'is_correct' => $_POST['is_correct'],
-        ];
-        $model->update($data);
-        header('location: ' . BASE_URL . 'answers?id='.$idques);
+        $model->content = $_POST['content'];
+        $model->question_id = $_POST['question_id'];
+        $model->is_correct = $_POST['is_correct'];
+        $model->save();
+        header('location: ' . BASE_URL . 'questions/chi-tiet/'.$urlBack);
         die;
     }
 

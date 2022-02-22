@@ -7,30 +7,36 @@ use App\Models\Quiz;
 
     class QuestionController{
 
-        public function index(){
-            $title = "Danh sách câu hỏi";
+        public function index($id){
             $h1 = "Danh sách câu hỏi của ";
-            $question = Question::all();
-            $Quiz = Quiz::all();
+            $Quiz = Quiz::find($id);
+            $question = Question::where('quiz_id', '=', $id) ->get();
+            // echo "<pre>";
+            // var_dump($Quiz);die;
             
-            include_once "./app/views/question/index.php";
+            return view('admin.question.index', [
+                'h1' => $h1,
+                'question' => $question,
+                'Quiz' => $Quiz,
+            ]);
         }
 
         public function save_question_new(){
             if(isset($_POST['add'])){
                 $model = new Question();
-                // kiểm tra xem ảnh có được up lên không
+               
                 $filename = "";
                 $imgvalue = $_FILES['img'];
                 if($imgvalue['size'] > 0){
                     $filename = uniqid(). '-' . $imgvalue['name'];
-                    move_uploaded_file($imgvalue['tmp_name'], 'img/photos/' .$filename);
-                    $filename = 'img/photos/' . $filename;
+                    move_uploaded_file($imgvalue['tmp_name'], './public/img/photos/' .$filename);
+                    $imgvalue = $filename;
+                    // var_dump($filename);die;
                 }
                 $data = [
                     'name' => $_POST['name'],
                     'quiz_id' => $_POST['quiz_id'],
-                    'img' => $imgvalue,
+                    'img' => $filename,
                 ];
                 $model->insert($data);
                 header('location: ' .$_SERVER['HTTP_REFERER'] );
@@ -38,42 +44,50 @@ use App\Models\Quiz;
             }
         }
 
-        public function xoa_question(){
-            $id = $_GET['id'];
+        public function xoa_question($id){
             Question::destroy($id);
             header('location: ' .$_SERVER['HTTP_REFERER']);
             die;
         }
 
-        public function update_question(){
-            $id = $_GET['id'];
-            $title = "Sửa Question";
+        public function update_question($id){
             $Quizs = Quiz::all();
-            $model = Question::where(['id', '=', $id])->first();
+            $model = Question::where('id', '=', $id)->first();
             if(!$model){
                 header('location: ' . BASE_URL . 'question');
                 die;
             }
 
-            include_once "./app/views/question/update.php";
+            return view('admin.question.update', [
+                'Quizs' => $Quizs,
+                'model' => $model,
+            ]);
         }
 
-        public function update_question_luu(){
-            $id = $_GET['id'];
+        public function update_question_luu($id){
             $idquiz = $_POST['quiz_id'];
 
-            $model = Question::where(['id', '=', $id])->first();
+            $model = Question::where('id', '=', $id)->first();
+            $img = $_FILES['img'];
+            $imgValue = $model->img;
+            $filename = "";
+            if ($img['size'] > 0) {
+                $filename = uniqid() . '-' . $img['name'];
+                move_uploaded_file($img['tmp_name'], './public/img/photos/' .$filename);
+            }elseif($img['size'] == 0){
+                $filename = $imgValue;
+            }
+            // var_dump($filename);die;
+
             if(!$model){
-                header('location: ' . BASE_URL . 'question');
+                header('location: ' . BASE_URL . 'questions');
                 die;
             }
-    
-            $data = [
-                'name' => $_POST['name'],
-                'quiz_id' => $_POST['quiz_id'],
-            ];
-            $model->update($data);
-            header('location: ' . BASE_URL . 'question?id='.$idquiz);
+            $model->name = $_POST['name'];
+            $model->quiz_id = $idquiz;
+            $model->img = $filename;
+            $model->save();
+            header('location: ' . BASE_URL . 'questions/chi-tiet/'.$idquiz);
             die;
         }
     }

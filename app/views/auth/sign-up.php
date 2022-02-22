@@ -29,7 +29,7 @@
 
 	<!-- BEGIN SETTINGS -->
 	<!-- Remove this after purchasing -->
-	<link class="js-stylesheet" href="css/light.css" rel="stylesheet">
+	<link class="js-stylesheet" href="public/css/light.css" rel="stylesheet">
 	<style>
 		body {
 			opacity: 0;
@@ -103,7 +103,7 @@
 		</div>
 	</main>
 
-	<script src="js/app.js"></script>
+	<script src="public/js/app.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function(event) { 

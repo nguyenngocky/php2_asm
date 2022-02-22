@@ -6,7 +6,7 @@ use App\Models\StudentQuiz;
 
 class StudentQuizController {
     public function index(){
-        include_once "./app/views/quiz/index.php";
+        include_once "./app/views/client/quiz/index.php";
     }
 }
 

@@ -27,7 +27,7 @@
 
 	<!-- BEGIN SETTINGS -->
 	<!-- Remove this after purchasing -->
-	<link class="js-stylesheet" href="css/light.css" rel="stylesheet">
+	<link class="js-stylesheet" href="public/css/light.css" rel="stylesheet">
 	<style>
 		body {
 			opacity: 0;
@@ -68,7 +68,7 @@
 							<div class="card-body">
 								<div class="m-sm-4">
 									<div class="text-center">
-										<img src="img/avatars/avatar.jpg" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+										<img src="public/img/avatars/avatar.jpg" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
 									</div>
 									<form action="" method="post">
 										<div class="mb-3">
@@ -108,7 +108,7 @@
 		</div>
 	</main>
 
-	<script src="js/app.js"></script>
+	<script src="public/js/app.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function(event) { 

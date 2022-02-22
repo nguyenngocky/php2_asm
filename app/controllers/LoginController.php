@@ -14,26 +14,22 @@ class LoginController{
                 'email' => $_POST['email'],
                 'password' => $_POST['password'],
             ];
-            $user = User::where(['email', '=', $data['email']])->first(); // kiểm tra email lấy từ input có giống với email trong bảng không
+            $user = User::where('email', '=', $data['email'])->first(); // kiểm tra email lấy từ input có giống với email trong bảng không
             if($user && password_verify($data['password'], $user->password)){ // kiểm tra mật khẩu lấy từ input giống với mật khẩu trong bảng không
                 if($user->role_id == 2){ // kiểm tra nếu role_id = 2 là giáo viên sẽ chuyển qua trang quản trị
+                    $sesUser = $user->toArray();
+                    unset($sesUser['password']); // xóa mật khẩu để bảo mật
+                    $_SESSION['auth'] = $sesUser;
                     header('Location: '. BASE_URL . 'dashboard');
-                    unset($user->password); // xóa mật khẩu để bảo mật 
-                    $_SESSION['auth'] = $user;
-                    $_SESSION['id'] = $user->id;
-                    $_SESSION['name'] = $user->name;
-                    $_SESSION['email'] = $user->email;
+                     
                 }else if($user->role_id == 1){ // role_id = 1 là sinh viên chuyển qua trang làm bài
-                    header('Location: '. BASE_URL . 'quiz');
-                    unset($user->password); // xóa mật khẩu để bảo mật . Đoạn này học thầy Thiện từ php1.
-                    $_SESSION['auth_sv'] = $user;
-                    $_SESSION['id_sv'] = $user->id;
-                    $_SESSION['name_sv'] = $user->name;
-                    $_SESSION['email_sv'] = $user->email;
+                    $sessUser = $user->toArray();
+                    unset($sessUser['password']); // xóa mật khẩu để bảo mật
+                    $_SESSION['sinhvien'] = $sessUser;
+                    // var_dump($_SESSION['sinhvien']);die;
+                    header('Location: '. BASE_URL . 'students/quiz');
                 }
             }else{
-                $thongbao = '<script>alert("đăng nhập thất bại")</script>';
-                echo $thongbao;
                 header('Location: '. BASE_URL . 'login');
             }
     }

@@ -1,0 +1,45 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+<?php $this->startSection('title', 'Sửa câu trả lời'); ?>
+ <div class="card-body h-100">
+ <div class="col-12 col-xl-16">
+ <div class="card">
+ <div class="card-body">
+ <form action="<?= BASE_URL . 'answers/luu-update/' . $model->id ?>" method="post">
+ 
+ <div class="mb-3">
+ <label class="form-label">Tiêu đề câu hỏi</label>
+ <select name="question_id" class="form-select flex-grow-1">
+ <?php $__currentLoopData = $question; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $ques): $loop = $this->incrementLoopIndices();  ?>
+ <option <?php echo \htmlentities($model->question_id == $ques->id ? "selected" : "", ENT_QUOTES, 'UTF-8', false); ?> value="<?php echo \htmlentities($ques->id, ENT_QUOTES, 'UTF-8', false); ?>"><?php echo \htmlentities($ques->name, ENT_QUOTES, 'UTF-8', false); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </div>
+
+ <div class="mb-3">
+ <label class="form-label">Đáp án</label>
+ <input type="text" name="content" value="<?=$model->content?>" class="form-control" placeholder="Nhập vào đáp án">
+ </div>
+
+ <div class="mb-3">
+ <img src="<?php echo \htmlentities(IMG_URL .$model->img, ENT_QUOTES, 'UTF-8', false); ?>" width="150px" alt="">
+ <input type="file" class="form-control">
+ </div>
+
+ <div class="mb-3">
+ <label class="form-label">Đáp án đúng ?</label>
+ <input type="checkbox" value="1" <?php if($model->is_correct == 1) : ?>  checked <?php endif; ?> name="is_correct"> Đúng 
+ </div>
+
+ 
+ <button name="add" type="submit" class="btn btn-primary">Submit</button>
+ <a class="btn btn-primary" href="javascript:history.back()">Quay lại</a>
+ </form>
+ </div>
+ </div>
+ </div>
+ </div>
+
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.admin'); } ?>
