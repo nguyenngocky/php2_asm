@@ -104,7 +104,7 @@
                             <p><span style="font-weight: bold;">Thời gian làm bài:</span> <span style="color: red">{{$quiz->duration_minutes}} Phút</span></p>
                             <p><span style="font-weight: bold;">Thời gian bắt đầu:</span> <span style="color: red">{{$quiz->start_time}}</span></p>
                             <p><span style="font-weight: bold;">Thời gian kết thúc:</span> <span style="color: red">{{$quiz->end_time}}</span></p>
-                            <p><span style="font-weight: bold;">Xáo trộn:</span> <span style="color: red">{{$quiz->is_shuffle == 0 ? "Không" : "Có"}}</span></p>
+                            <p><span style="font-weight: bold;">Xáo trộn:</span> <span style="color: red">{{$quiz->is_shuffle == 0 ? "Có" : "Không"}}</span></p>
                             <p><span style="font-weight: bold;">Tổng số câu hỏi:</span> <span style="color: red">{{count($quiz->questions)}}</span></p>
                         </div>
                         <a href="<?= BASE_URL . 'questions/chi-tiet/' . $quiz->id ?>" style="margin: auto; margin-bottom: 10px;" class="btn btn-pill btn-success">Thêm câu hỏi</a>

@@ -97,7 +97,11 @@ function applyRouting($url){
     //     - tham số tuỳ chọn : {id}?
     //     $router->get('cap-nhat/{id}/{name}?', [SubjectController::class, 'editForm']);
     // });
-    $router->get('students/quiz', [StudentQuizController::class, 'index']);
+    $router->get('students/quiz', [StudentQuizController::class, 'index'], ['before' => 'check-login-sv']);
+    $router->any('students/out', [StudentQuizController::class, 'log_out']);
+    $router->get('students/ds-quiz/{id}', [StudentQuizController::class, 'ds_quiz']);
+    $router->get('students/lam-bai/{id}', [StudentQuizController::class, 'lamQuiz']);
+    $router->post('students/lam-bai/{id}', [StudentQuizController::class, 'ketQua']);
 
 
 

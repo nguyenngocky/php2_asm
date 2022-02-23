@@ -4,6 +4,8 @@ use App\Models\user;
 
 if(isset($_SESSION['auth'])){header('location: '. BASE_URL .'dashboard');}
 
+if(isset($_SESSION['sinhvien'])){header('location: '. BASE_URL .'students/quiz');}
+
 class LoginController{
     public function index(){
         
