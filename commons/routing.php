@@ -84,19 +84,7 @@ function applyRouting($url){
     $router->any('xoa/{id}', [AnswersController::class, 'xoa_answers']); // xóa answers
     });
 
-    // $router->group(['prefix' => 'mon-hoc'], function($router){
-    //     $router->get('/', [SubjectController::class, 'index'], ['before' => 'check-login']);
-    //     $router->get('tao-moi', [SubjectController::class, 'addForm']);
-    //     $router->post('tao-moi', [SubjectController::class, 'saveAdd']);
-    //     $router->get('{subjectId}/cap-nhat', 
-    //         [SubjectController::class, 'editForm']);
-    //     $router->get('xoa/{id}', [LoginController::class, 'remove']);
-    //     tham số {}
-    //     2 loại 
-    //     - tham số bắt buộc : {id}
-    //     - tham số tuỳ chọn : {id}?
-    //     $router->get('cap-nhat/{id}/{name}?', [SubjectController::class, 'editForm']);
-    // });
+    // trang làm bài
     $router->get('students/quiz', [StudentQuizController::class, 'index'], ['before' => 'check-login-sv']);
     $router->any('students/out', [StudentQuizController::class, 'log_out']);
     $router->get('students/ds-quiz/{id}', [StudentQuizController::class, 'ds_quiz']);

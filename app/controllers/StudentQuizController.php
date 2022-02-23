@@ -35,11 +35,8 @@ class StudentQuizController {
     {
         $user = $_SESSION['sinhvien']['id'];
         $studentQuiz = StudentQuiz::where('student_id', $user)
-                            ->where('quiz_id', $id)->first();
-        // if(!$studentQuiz)
-        // $studentQuiz = StudentQuiz::where('student_id','=', $id)->first();
-        // echo "<pre>";
-        // var_dump($studentQuiz);die;
+                        ->where('quiz_id', $id)->first();
+
         $quiz = Quiz::find($id);
         $questions = Question::where('quiz_id', $id)->get();
         return view('client.quiz.lam-bai', [

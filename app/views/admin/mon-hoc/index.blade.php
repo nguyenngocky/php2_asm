@@ -18,6 +18,7 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Tên môn</th>
+                                        <th>Số quiz</th>
                                         <th>Người tạo gần đây</th>
                                         <th>
                                             
@@ -61,6 +62,7 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$sub->name}}</td>
+                                        <td>{{count($sub->quizs)}}</td>
                                         <td>
                                             @foreach ($user as $c) 
                                                
